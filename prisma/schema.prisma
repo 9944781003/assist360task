@@ -1,0 +1,62 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+model Role {
+  id   String @id @default(uuid())
+  name String @unique
+  users User[]
+}
+model Department {
+  id   String @id @default(uuid())
+  name String @unique
+  users User[]
+}
+
+model User {
+  id       String   @id @default(uuid())
+  email    String   @unique
+  name     String?
+  password String
+  role     Role     @relation(fields: [roleId], references: [id])
+  roleId   String
+  department Department @relation(fields: [departmentId], references: [id])
+  departmentId String
+  status   Boolean  @default(true)
+  teams    Team[]
+  joinedAt DateTime @default(now())
+  invitedBy User? @relation("InvitedBy", fields: [invitedById], references: [id])
+  invitedById String?
+  invitedUsers User[] @relation("InvitedBy")
+  isOnline Boolean @default(false)
+  phone String? @unique
+  country String? @default("india")
+
+
+
+
+}
+model Team {
+  id   String @id @default(uuid())
+  name String @unique
+  users User[]
+}
+
+model Product {
+  id          String   @id @default(uuid())
+  name        String   @unique
+  description String?
+  price       Float
+  status      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
