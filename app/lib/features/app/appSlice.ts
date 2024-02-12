@@ -27,7 +27,7 @@ export type UserProps={
 }
 
 interface AppState {
-  authenticatedUser: User | null;
+  authenticatedUser: UserProps | null;
   users: UserProps[];
 }
 
@@ -40,7 +40,7 @@ const appSlice = createSlice({
   name: "app",
   initialState,
   reducers: {
-    setAuthenticatedUser: (state, action: PayloadAction<User | null>) => {
+    setAuthenticatedUser: (state, action: PayloadAction<UserProps | null>) => {
       state.authenticatedUser = action.payload;
     },
     setUsers: (state, action: PayloadAction<UserProps[]>) => {

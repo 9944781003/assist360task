@@ -14,13 +14,16 @@ import { FiLock } from "react-icons/fi";
 import { IoIosSwap } from "react-icons/io";
 import withAuth from "@/hooks/withAuth.hook";
 import { MdLogout } from "react-icons/md";
-import { store } from "@/app/lib/store";
+import { store, useAppSelector } from "@/app/lib/store";
 import { IoLocationOutline } from "react-icons/io5";
 import { useRouter } from "next/router";
 const inter = Inter({ subsets: ["latin"] });
 
 function DashBoard() {
-  const router=useRouter()
+  const authenticatedUser = useAppSelector(
+    (state) => state.app.authenticatedUser
+  );
+  const router = useRouter();
   const handleLogout = () => {
     localStorage.removeItem("authenticatedUser");
     store.dispatch({ type: "app/clearAuthenticatedUser", payload: null });
@@ -44,7 +47,10 @@ function DashBoard() {
               <div className="text-info">learn more</div>
               <IconLink icon={<BsGear />} title="General" />
               <IconLink icon={<RiEqualizerLine />} title="Customization" />
-              <IconLink icon={<TbUsers />} title="Users" />
+              {authenticatedUser?.role?.name === "Admin" || "Super Admin" ? (
+                <IconLink icon={<TbUsers />} title="Users" />
+              ) : null}
+
               <IconLink icon={<BsShieldCheck />} title="Security" />
               <IconLink icon={<TbApi />} title="API" />
               <IconLink icon={<PiReceiptLight />} title="Billing" />
@@ -54,9 +60,13 @@ function DashBoard() {
               <IconLink icon={<TbApps />} title="Apps" />
               <IconLink icon={<FiLock />} title="Permissions" />
               <IconLink icon={<IoIosSwap />} title="Cross Account Copier" />
-              <IconLink icon={<IoLocationOutline />} title="Get distance" onClick={()=>{
-                router.push("/distance")
-              }} />
+              <IconLink
+                icon={<IoLocationOutline />}
+                title="Get distance"
+                onClick={() => {
+                  router.push("/distance");
+                }}
+              />
 
               <IconLink
                 onClick={handleLogout}

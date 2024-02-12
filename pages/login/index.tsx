@@ -32,8 +32,8 @@ const BgCol = styled(Col)`
   
   const { control, handleSubmit } = useForm({
     defaultValues: {
-      email: "mailtoarull@gmail.com",
-      password: "Master@2024",
+      email: "Haley_Walter@hotmail.com",
+      password: "Asdf@123$",
     },
   });
   const emailController = useController({
@@ -56,7 +56,9 @@ const BgCol = styled(Col)`
         
       }
      
-    } catch (error) {}
+    } catch (error:any) {
+      alert(error.message)
+    }
   };
 
   return (

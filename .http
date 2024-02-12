@@ -9,3 +9,12 @@ Content-Type: application/json
     "password": "Master@2024"
 
 }
+
+###
+
+GET https://router.hereapi.com/v8/routes?transportMode=car&origin=11.7037824,78.2485127&destination=11.7037824,78.2485127&return=summary&apiKey=JX6YlBkJ3tnWC_rV2GqhqsGP5iNQCyMEnH6jRvvw73E
+
+###
+GET https://maps.googleapis.com/maps/api/geocode/json?latlng=13.0827,80.2707&key=AIzaSyC5aPEnI7salGCruJLKR2vKtM_RGJC0ASc
+
+
