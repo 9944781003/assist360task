@@ -40,8 +40,9 @@ function DashBoard() {
       <main>
         <Container fluid>
           <Row>
-            <Col className=" vh-100 ps-4">
-              <div style={{ fontWeight: 500 }} className="fs-3 mt-4">
+            <Col className=" vh-100 ps-4 ">
+             <div className="position-fixed">
+             <div style={{ fontWeight: 500 }} className="fs-3 mt-4">
                 Administration
               </div>
               <div className="text-info">learn more</div>
@@ -74,6 +75,7 @@ function DashBoard() {
                 title="Logout"
                 titleColor="red"
               />
+             </div>
             </Col>
             <Col xs={9} className=" vh-100">
               <Tabs
