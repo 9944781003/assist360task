@@ -29,11 +29,13 @@ export type UserProps={
 interface AppState {
   authenticatedUser: UserProps | null;
   users: UserProps[];
+  isFetching?:boolean
 }
 
 const initialState: AppState = {
   authenticatedUser: null,
   users: [],
+  isFetching:false
 };
 
 const appSlice = createSlice({
@@ -49,6 +51,9 @@ const appSlice = createSlice({
     clearAuthenticatedUser: (state) => {
         state.authenticatedUser = null;
     },
+    setIsFetching:(state,action:PayloadAction<boolean>)=>{
+      state.isFetching=action.payload
+    }
     
   },
 });
